@@ -15,17 +15,17 @@ assert read_points("10,20;20,10") == [Point(10, 20), Point(20, 10)]
 ```python
 from points import read_points, Point
 
-print(read_points("10,20_20,10", separator="_")) == [Point(10, 20), Point(20, 10)]
+assert read_points("10,20_20,10", separator="_") == [Point(10, 20), Point(20, 10)]
 ```
 
 ```python
 from points import read_points, Point
 
-print(read_points("1.234,0;10,20")) == [Point(1.234, 0), Point(10, 20)]
+assert read_points("1.234,0;10,20") == [Point(1.234, 0), Point(10, 20)]
 ```
 
 ```python
 from points import read_points, Point
 
-print(read_points("1.234,0*10,20*1.234,0*-10,20", separator="*")) == [Point(1.234, 0), Point(10, 20), Point(1.234, 0), Point(10, 20)]
+assert read_points("1.234,0*10,20*1.234,0*-10,20", separator="*") == [Point(1.234, 0), Point(10, 20), Point(1.234, 0), Point(10, 20)]
 ```
