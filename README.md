@@ -27,5 +27,5 @@ assert read_points("1.234,0;10,20") == [Point(1.234, 0), Point(10, 20)]
 ```python
 from points import read_points, Point
 
-assert read_points("1.234,0*10,20*1.234,0*-10,20", separator="*") == [Point(1.234, 0), Point(10, 20), Point(1.234, 0), Point(10, 20)]
+assert read_points("1.234,0*10,20*1.234,0*-10,20", separator="*") == [Point(1.234, 0), Point(10, 20), Point(1.234, 0), Point(-10, 20)]
 ```
