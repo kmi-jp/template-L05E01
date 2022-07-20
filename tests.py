@@ -3,9 +3,21 @@ import pytest
 from points import read_points, Point
 
 
+def isnamedtupleinstance(x):
+    t = type(x)
+    b = t.__bases__
+    if len(b) != 1 or b[0] != tuple:
+        return False
+    f = getattr(t, "_fields", None)
+    if not isinstance(f, tuple):
+        return False
+    return all(type(n) == str for n in f)
+
+
 def test_point():
     point = Point(20, 10)
 
+    assert isnamedtupleinstance(point)
     assert point.x == 20
     assert point.y == 10
 
@@ -18,7 +30,7 @@ def test_point():
     ],
 )
 def test_read_points(test_input, expected):
-    assert read_points(test_input) == expected
+    assert read_points(text=test_input) == expected
 
 
 @pytest.mark.parametrize(
@@ -38,4 +50,8 @@ def test_read_points(test_input, expected):
     ],
 )
 def test_read_points_custom_separator(test_input, separator, expected):
-    assert read_points(test_input, separator) == expected
+    assert read_points(text=test_input, separator=separator) == expected
+
+
+def test_docstrings():
+    assert read_points.__doc__ is not None
